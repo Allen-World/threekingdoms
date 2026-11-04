@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+    <title>三国·烽火诸侯</title>
+    <!-- 根路径落地页：把 `/` 引导到开局界面。
+         · JS 走 location.replace —— 不写入历史记录，避免用户点「返回」被弹回来陷入循环。
+         · <noscript> 里保留 meta refresh 作为禁用 JS 的兜底。
+         · 样式全部内联，不引任何 bundle：这一屏必须零请求、瞬时可见。 -->
+    <noscript><meta http-equiv="refresh" content="0;url=./opening.html" /></noscript>
+    <style>
+      :root { color-scheme: dark; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body {
+        min-height: 100svh; display: grid; place-items: center;
+        background:
+          radial-gradient(120% 90% at 50% 0%, #2a2119 0%, #14100b 55%, #0d0b08 100%);
+        color: #c9a86c;
+        font-family: "Noto Serif SC", "Songti SC", "SimSun", serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      .boot { text-align: center; animation: rise 620ms cubic-bezier(0.16, 1, 0.3, 1) both; }
+      .seal {
+        width: 76px; height: 76px; margin: 0 auto 22px;
+        display: grid; place-items: center;
+        font-size: 38px; line-height: 1; color: #e8d5a8;
+        border: 2px solid #c9a86c; border-radius: 10px;
+        background: linear-gradient(160deg, rgba(201,168,108,0.16), rgba(201,168,108,0.03));
+        box-shadow: 0 0 0 1px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.10),
+                    0 10px 34px rgba(0,0,0,0.55);
+        animation: pulse 2.4s ease-in-out infinite;
+      }
+      h1 {
+        font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 700; letter-spacing: 0.18em;
+        background: linear-gradient(180deg, #f0dcae, #c9a86c 55%, #8d7038);
+        -webkit-background-clip: text; background-clip: text; color: transparent;
+      }
+      p { margin-top: 12px; font-size: 0.82rem; letter-spacing: 0.32em; color: #7d6d52; }
+      .bar {
+        width: 132px; height: 2px; margin: 26px auto 0; overflow: hidden;
+        background: rgba(201,168,108,0.16); border-radius: 2px;
+      }
+      .bar::after {
+        content: ""; display: block; width: 42%; height: 100%; border-radius: 2px;
+        background: linear-gradient(90deg, transparent, #c9a86c, transparent);
+        animation: sweep 1.15s ease-in-out infinite;
+      }
+      a { color: #c9a86c; }
+      @keyframes rise  { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+      @keyframes pulse { 0%, 100% { box-shadow: 0 0 0 1px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.10), 0 10px 34px rgba(0,0,0,0.55); }
+                         50%      { box-shadow: 0 0 0 1px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.10), 0 10px 40px rgba(201,168,108,0.28); } }
+      @keyframes sweep { from { transform: translateX(-100%); } to { transform: translateX(320%); } }
+      @media (prefers-reduced-motion: reduce) {
+        *, *::after { animation: none !important; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="boot">
+      <div class="seal" aria-hidden="true">汉</div>
+      <h1>三国·烽火诸侯</h1>
+      <p>正 在 入 局</p>
+      <div class="bar" role="progressbar" aria-label="载入中"></div>
+      <p style="margin-top:20px;letter-spacing:0.06em">
+        <a href="./opening.html">未自动跳转？点此进入</a>
+      </p>
+    </main>
+    <script>
+      // replace 而非 assign：根路径不留在历史栈里
+      location.replace('./opening.html');
+    </script>
+  </body>
+</html>
